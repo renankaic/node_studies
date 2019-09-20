@@ -9,7 +9,6 @@ module.exports = (app) => {
     });
 
     app.get('/books', (req, res) => {
-
         const booksDao = new BookDao(db);
         booksDao.list()
                 .then(books => {
@@ -21,13 +20,12 @@ module.exports = (app) => {
                     )
                 })
                 .catch(error => console.log(error));
-
     });
 
-    app.post('/books', (req, resp) => {
+    app.post('/books', (req, res) => {
         const booksDao = new BookDao(db);
-        booksDao.add(req.body)
-            .then()
+        booksDao.create(req.body)
+            .then(res.redirect('/books'))
             .catch(error => console.log(error));
     });
 
