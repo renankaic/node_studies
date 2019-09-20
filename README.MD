@@ -15,3 +15,5 @@
 • "scripts" section inside the "package.json" file can be used to start the project with different presets with "npm [script_name]". Example: "npm start" will call "nodemon server.js" command
 
 • "Marko" module framework can be used to generate page templates
+
+• Use "npm config set cafile /path/to/your/cert.pem --global" to configure a cert for NPM

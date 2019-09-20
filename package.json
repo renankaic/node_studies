@@ -10,8 +10,10 @@
 	"author": "Renan Lopes",
 	"license": "ISC",
 	"dependencies": {
+		"event-stream": "^4.0.1",
 		"express": "4.16.3",
-		"marko": "4.13.4-1"
+		"marko": "4.13.4-1",
+		"sqlite3": "4.1.0"
 	},
 	"devDependencies": {
 		"nodemon": "1.18.4"
