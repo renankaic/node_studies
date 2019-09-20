@@ -13,3 +13,5 @@
 • Use "npm install -g [module]" to install a module globally on the system. Example: nodemon
 
 • "scripts" section inside the "package.json" file can be used to start the project with different presets with "npm [script_name]". Example: "npm start" will call "nodemon server.js" command
+
+• "Marko" module framework can be used to generate page templates
