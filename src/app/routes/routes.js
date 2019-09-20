@@ -4,10 +4,12 @@ const db = require('../../config/database');
 //Exports this module as a function that must receive the "app" parameter when called
 module.exports = (app) => {
 
+    //Home Page
     app.get('/', (req, res) => {
         res.send('<h1>Code House</h1>');
     });
 
+    //List the books
     app.get('/books', (req, res) => {
         const booksDao = new BookDao(db);
         booksDao.list()
@@ -22,6 +24,7 @@ module.exports = (app) => {
                 .catch(error => console.log(error));
     });
 
+    //Creates a new book
     app.post('/books', (req, res) => {
         const booksDao = new BookDao(db);
         booksDao.create(req.body)
@@ -29,10 +32,12 @@ module.exports = (app) => {
                 .catch(error => console.log(error));
     });
 
+    //Create book form
     app.get('/books/form', (req, res) => {
         res.marko(require('../views/books/forms/create.marko'));
     });
 
+    //Update book form
     app.get('/books/form/:id', (req, res) => {
         const booksDao = new BookDao(db);
         booksDao.get(req.params.id)
@@ -40,6 +45,7 @@ module.exports = (app) => {
             .catch(error => console.log(error));
     });
 
+    //Detail the book
     app.get('/books/:id', (req, res) => {
         const booksDao = new BookDao(db);
         booksDao.get(req.params.id)
@@ -47,6 +53,7 @@ module.exports = (app) => {
                 .catch(error => console.log(error));
     });
 
+    //Updates the book
     app.post('/books/:id', (req, res) => {
         const booksDao = new BookDao(db);
         booksDao.update(req.body)
@@ -54,6 +61,7 @@ module.exports = (app) => {
                 .catch(error => console.error(error));
     });
 
+    //Deletes the book
     app.get('/books/:id/delete', (req, res) => {
         const booksDao = new BookDao(db);
         booksDao.delete(req.params.id)
