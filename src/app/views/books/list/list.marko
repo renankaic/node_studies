@@ -13,7 +13,11 @@
         <tr for (book in data.books)>
             <td>${book.id}</td>
             <td>${book.titulo}</td>
+            <td><a href="/books/form/${book.id}">Editar</a></td>
+            <td><a href="/books/${book.id}/delete">Remover</a></td>
         </tr>
     </table> 
+
+    <p><a href="/books/form">Novo Livro</a></p>
 </body>
 </html>
