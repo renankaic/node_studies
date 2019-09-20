@@ -42,7 +42,7 @@ function render(input, out, __component, component, state) {
       "\" data-type=\"remove\">Remover</a></td></tr>");
   });
 
-  out.w("</table> <p><a href=\"/books/form\">Novo Livro</a></p><script src=\"./remove-livro.js\"></script>");
+  out.w("</table> <p><a href=\"/books/form\">Novo Livro</a></p><script src=\"/static/js/remove-livro.js\"></script>");
 
   init_components_tag({}, out);
 

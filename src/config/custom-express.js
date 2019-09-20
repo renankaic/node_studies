@@ -6,6 +6,7 @@ const app = express();
 const bodyParser = require('body-parser');
 
 //Defining middlewares
+app.use('/static', express.static('src/app/public'));
 app.use(bodyParser.urlencoded({
     extended: true
 }));
