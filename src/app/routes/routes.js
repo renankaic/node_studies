@@ -62,10 +62,10 @@ module.exports = (app) => {
     });
 
     //Deletes the book
-    app.get('/books/:id/delete', (req, res) => {
+    app.delete('/books/:id', (req, res) => {
         const booksDao = new BookDao(db);
         booksDao.delete(req.params.id)
-                .then(res.redirect('/books'))
+                .then(() => res.status(200).end())
                 .catch(error => console.error(error));
     });
 

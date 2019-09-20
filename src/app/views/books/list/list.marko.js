@@ -22,29 +22,31 @@ function render(input, out, __component, component, state) {
 
   component_globals_tag({}, out);
 
-  out.w("<h1>Listagem dos livros</h1><table><tr><td>ID</td><td>Título</td></tr>");
+  out.w("<h1>Listagem dos livros</h1><table id=\"books\"><tr><td>ID</td><td>Título</td><td>Preço</td><td>Editar</td><td>Remover</td></tr>");
 
-  var for__9 = 0;
+  var for__12 = 0;
 
   marko_forEach(data.books, function(book) {
-    var keyscope__10 = "[" + ((for__9++) + "]");
+    var keyscope__13 = "[" + ((for__12++) + "]");
 
-    out.w("<tr><td>" +
+    out.w("<tr id=\"book_" +
+      marko_escapeXmlAttr(book.id) +
+      "\"><td>" +
       marko_escapeXml(book.id) +
       "</td><td>" +
       marko_escapeXml(book.titulo) +
-      "</td><td><a href=\"/books/form/" +
+      "</td><td>" +
+      marko_escapeXml(book.preco) +
+      "</td><td><a href=\"#\">Editar</a></td><td><a href=\"#\" data-ref=\"" +
       marko_escapeXmlAttr(book.id) +
-      "\">Editar</a></td><td><a href=\"/books/" +
-      marko_escapeXmlAttr(book.id) +
-      "/delete\">Remover</a></td></tr>");
+      "\" data-type=\"remove\">Remover</a></td></tr>");
   });
 
-  out.w("</table> <p><a href=\"/books/form\">Novo Livro</a></p>");
+  out.w("</table> <p><a href=\"/books/form\">Novo Livro</a></p><script src=\"./remove-livro.js\"></script>");
 
   init_components_tag({}, out);
 
-  await_reorderer_tag({}, out, __component, "20");
+  await_reorderer_tag({}, out, __component, "25");
 
   out.w("</body></html>");
 }
