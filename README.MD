@@ -17,3 +17,11 @@
 • "Marko" module framework can be used to generate page templates
 
 • Use "npm config set cafile /path/to/your/cert.pem --global" to configure a cert for NPM
+
+• Use the [body-parser] middleware to handle requisitions bodies.
+
+• The middlewares ordering is very important!!!
+
+• The "next()" function used in middlewares will execute the next middleware function. 
+
+• Anything BEFORE the "next()" will be processed before the route. Everything AFTER the "next()" will be processed after the route code is finished.

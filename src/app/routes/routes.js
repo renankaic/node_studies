@@ -25,7 +25,10 @@ module.exports = (app) => {
     });
 
     app.post('/books', (req, resp) => {
-        console.log(req.body);
+        const booksDao = new BookDao(db);
+        booksDao.add(req.body)
+            .then()
+            .catch(error => console.log(error));
     });
 
     app.get('/books/form', (req, res) => {
