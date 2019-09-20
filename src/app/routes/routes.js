@@ -24,4 +24,12 @@ module.exports = (app) => {
 
     });
 
+    app.post('/books', (req, resp) => {
+        console.log(req.body);
+    });
+
+    app.get('/books/form', (req, res) => {
+        res.marko( require('../views/books/forms/form.marko') );
+    });
+
 };
