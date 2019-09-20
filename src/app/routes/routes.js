@@ -1,3 +1,4 @@
+const BookDao = require('../infra/book-dao');
 const db = require('../../config/database');
 
 //Exports this module as a function that must receive the "app" parameter when called
@@ -9,7 +10,8 @@ module.exports = (app) => {
 
     app.get('/books', (req, res) => {
 
-        db.all('SELECT * FROM livros', (error, result) => {
+        const bookDao = new BookDao(db);
+        bookDao.list((error, result) => {
 
             res.marko(
                 require('../views/books/list/list.marko'),
@@ -19,7 +21,7 @@ module.exports = (app) => {
             )
 
         });
-       
+
     });
 
 };
