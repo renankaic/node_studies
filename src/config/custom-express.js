@@ -23,5 +23,19 @@ app.use(methodOverride(function (req, res) {
 const routes = require('../app/routes/routes');
 routes(app); //Calls the function exported by the required "routes" module sendind the "app" required parameter
 
+//Creating a Middleware to handle HTTP 404
+app.use((request, response, next) => {
+    return response.status(404).marko(
+        require('../app/views/base/errors/404.marko')
+    );
+});
+
+//Creating a Middleware to handle HTTP 500
+app.use((error, request, response, next) => {
+    return response.status(500).marko(
+        require('../app/views/base/errors/500.marko')
+    );
+});
+
 //This will make the "app" variable visible when this module is required in a file
 module.exports = app;
