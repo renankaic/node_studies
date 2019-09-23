@@ -1,4 +1,4 @@
-const bookTable = document.querySelector("#books");
+const bookTable = document.querySelector("#bookTable");
 const serverHost = "http://192.168.234.132:3000";
 
 bookTable.addEventListener('click', (event) => {
