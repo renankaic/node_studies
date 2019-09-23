@@ -30,3 +30,5 @@
 with Express
 
 • Use "methodOverride" middleware to deal with forms and HTTP requests methods, just like "PUT" when updating a resource
+
+• Error handling middlewares must be after all middlewares

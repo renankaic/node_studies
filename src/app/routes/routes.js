@@ -6,7 +6,9 @@ module.exports = (app) => {
 
     //Home Page
     app.get('/', (req, res) => {
-        res.send('<h1>Code House</h1>');
+        res.status(200).marko(
+            require('../views/base/home/home.marko')
+        );
     });
 
     //List the books
