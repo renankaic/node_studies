@@ -2,9 +2,12 @@
     <body>
         <h1>Cadastro de livros</h1>
 
-        <form action="/books/${data.book.id}" method="post" if-match="*">
+        <form action="/books" method="post">
 
-            <input type="hidden" id="id" name="id" value="${data.book.id}" />
+            <div if(data.book.id)>
+                <input type="hidden" id="id" name="id" value="${data.book.id}" />
+                <input type="hidden" name="_method" value="PUT">
+            </div>
 
             <div>
                 <label for="titulo">Título:</label>

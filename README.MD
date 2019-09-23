@@ -25,3 +25,8 @@
 • The "next()" function used in middlewares will execute the next middleware function. 
 
 • Anything BEFORE the "next()" will be processed before the route. Everything AFTER the "next()" will be processed after the route code is finished.
+
+• Use "app.use('/static', express.static('src/app/public'));" to serve static files inside the public folder 
+with Express
+
+• Use "methodOverride" middleware to deal with forms and HTTP requests methods, just like "PUT" when updating a resource
