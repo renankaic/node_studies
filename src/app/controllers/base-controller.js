@@ -1,5 +1,5 @@
 const templates = require('../views/templates');
-
+const BookController = require('./book-controller');
 
 class BaseController {
 
@@ -32,8 +32,31 @@ class BaseController {
 
     login() {
 
-        return (req, res) => {
+        return (req, res, next) => {
             
+            const passport = req.passport;
+            passport.authenticate('local', (error, user, info) => {
+
+                if (info){
+                    return res.marko(templates.base.login);
+                }
+
+                if (error){
+                    return next(error);
+                }
+
+                req.login(user, (error) =>{
+
+                    if (error) {
+                        return next(error);
+                    }
+
+                    return res.redirect(BookController.routes().list);
+
+                });
+
+            }) (req, res, next);
+
         };
 
     }
