@@ -1,15 +1,11 @@
-const { check }  = require('express-validator/check');
-
 //Controllers
 const BookController = require('../controllers/book-controller');
 const bookController = new BookController();
 const BaseController = require('../controllers/base-controller');
 const baseController = new BaseController();
 
-const bookValidations = [
-    check('titulo').isLength({ min: 5 }).withMessage("O Título precisa ter no mínimo 5 caracteres!"),
-    check('preco').isCurrency().withMessage("O preço precisa ser um valor monetário válido!")
-];
+//Models
+const BookModel = require('../models/book');
 
 //Exports this module as a function that must receive the "app" parameter when called
 module.exports = (app) => {
@@ -24,10 +20,10 @@ module.exports = (app) => {
     app.get(bookRoutes.list, bookController.list());
 
     //Creates a new book
-    app.post(bookRoutes.list, bookValidations, bookController.create() );
+    app.post(bookRoutes.list, BookModel.validations(), bookController.create() );
 
     //Updates a book
-    app.put(bookRoutes.list, bookValidations, bookController.update());
+    app.put(bookRoutes.list, BookModel.validations(), bookController.update());
 
     //Create book form
     app.get(bookRoutes.register, bookController.createForm());
