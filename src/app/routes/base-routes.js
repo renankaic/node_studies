@@ -10,4 +10,9 @@ module.exports = (app) => {
     //Home Page
     app.get(baseRoutes.home, baseController.home());
 
+    //Login Page
+    app.route(baseRoutes.login)
+        .get(baseController.loginPage())
+        .post(baseController.login())
+
 };

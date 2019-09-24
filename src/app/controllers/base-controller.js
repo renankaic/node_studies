@@ -6,7 +6,8 @@ class BaseController {
     static routes(){
 
         return {
-            home: '/'
+            home: '/',
+            login: '/login'
         };
 
     }
@@ -17,6 +18,22 @@ class BaseController {
             res.status(200).marko(
                 templates.base.home
             );
+        };
+
+    }
+
+    loginPage() {
+
+        return (req, res) => {
+            res.marko( templates.base.login )
+        };
+
+    }
+
+    login() {
+
+        return (req, res) => {
+
         };
 
     }
