@@ -21,6 +21,10 @@ app.use(methodOverride(function (req, res) {
     
 }));
 
+//Setting session authentication
+const authSession = require('./auth-session');
+authSession(app);
+
 const routes = require('../app/routes/routes');
 routes(app); //Calls the function exported by the required "routes" module sendind the "app" required parameter
 

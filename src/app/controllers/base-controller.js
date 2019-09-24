@@ -33,7 +33,7 @@ class BaseController {
     login() {
 
         return (req, res) => {
-
+            
         };
 
     }

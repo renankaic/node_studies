@@ -38,3 +38,9 @@ with Express
 • Create a custom validator for express-validator: https://express-validator.github.io/docs/custom-validators-sanitizers.html#custom-validator
 
 • Regex Expression validation: check('myField').matches(/* regular expression */)
+
+• For Express Authentication, use the following modules:
+    + passport-local@1.0.0
+    + uuid@3.3.2
+    + express-session@1.15.6
+    + passport@0.4.0
