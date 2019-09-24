@@ -1,5 +1,5 @@
 const db = require('../../config/database');
-const BookDao = require('../infra/book-dao');
+const BookDao = require('../data/book-dao');
 const { validationResult } = require('express-validator/check');
 const templates = require('../views/templates');
 
