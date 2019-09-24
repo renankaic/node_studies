@@ -1,3 +1,4 @@
+const { check, validationResult } = require('express-validator/check');
 const BookDao = require('../infra/book-dao');
 const db = require('../../config/database');
 
@@ -25,7 +26,18 @@ module.exports = (app) => {
     });
 
     //Creates a new book
-    app.post('/books', (req, res) => {
+    app.post('/books', [
+        check('titulo').isLength({ min: 5 }),
+        check('preco').isCurrency()
+    ], (req, res) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()){
+            return res.marko(
+                require('../views/books/forms/form.marko'),
+                { book: {}, errors }
+            );
+        }
+
         const booksDao = new BookDao(db);
         booksDao.create(req.body)
                 .then(res.redirect('/books'))
