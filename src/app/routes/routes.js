@@ -19,14 +19,11 @@ module.exports = (app) => {
     //List the books
     app.get(bookRoutes.list, bookController.list());
 
-    //Creates a new book
-    app.post(bookRoutes.list, BookModel.validations(), bookController.create() );
-
-    //Updates a book
-    app.put(bookRoutes.list, BookModel.validations(), bookController.update());
-
-    //Create book form
-    app.get(bookRoutes.register, bookController.createForm());
+    //Routes for book manipulation
+    app.route(bookRoutes.register)
+        .get(bookController.createForm())
+        .post(BookModel.validations(), bookController.create())
+        .put(BookModel.validations(), bookController.update())
 
     //Update book form
     app.get(bookRoutes.edit, bookController.updateForm());      
