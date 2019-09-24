@@ -44,3 +44,5 @@ with Express
     + uuid@3.3.2
     + express-session@1.15.6
     + passport@0.4.0
+
+• Use "/[resource]*" regex to filter which routes will require to be authenticated to allow access
