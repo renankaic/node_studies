@@ -23,6 +23,16 @@
         <main class="conteudoPrincipal">
             <div class="container">
                 <h1>Cadastro de Livros</h1>
+
+                <div if(data.errors.length > 0)>
+                    <div class="alert alert-danger">
+                        <ul style="margin-bottom: 0;">
+                            <li for(error in data.errors)>
+                                ${error.param} - ${error.msg}
+                            </li>
+                        </ul>
+                    </div>     
+                </div>
                 
                 <form action="/books" method="post">
 

@@ -1,6 +1,10 @@
 const { check, validationResult } = require('express-validator/check');
 const BookDao = require('../infra/book-dao');
 const db = require('../../config/database');
+const bookValidations = [
+    check('titulo').isLength({ min: 5 }).withMessage("O Título precisa ter no mínimo 5 caracteres!"),
+    check('preco').isCurrency().withMessage("O preço precisa ser um valor monetário válido!")
+];
 
 //Exports this module as a function that must receive the "app" parameter when called
 module.exports = (app) => {
@@ -19,23 +23,22 @@ module.exports = (app) => {
                 .then(books => {
                     res.marko(
                         require('../views/books/list/list.marko'),
-                        { books }
+                        { books: books }
                     )
                 })
                 .catch(error => console.log(error));
     });
 
     //Creates a new book
-    app.post('/books', [
-        check('titulo').isLength({ min: 5 }),
-        check('preco').isCurrency()
-    ], (req, res) => {
+    app.post('/books', bookValidations, (req, res) => {
         const errors = validationResult(req);
-        if (!errors.isEmpty()){
+        if (!errors.isEmpty()) {
+
             return res.marko(
                 require('../views/books/forms/form.marko'),
-                { book: {}, errors }
+                { book: req.body, errors: errors.array() }
             );
+
         }
 
         const booksDao = new BookDao(db);
@@ -45,7 +48,17 @@ module.exports = (app) => {
     });
 
     //Updates a book
-    app.put('/books', (req, res) => {
+    app.put('/books', bookValidations, (req, res) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+
+            return res.marko(
+                require('../views/books/forms/form.marko'),
+                { book: req.body, errors: errors.array() }
+            );      
+            
+        }
+        
         const booksDao = new BookDao(db);
         booksDao.update(req.body)
             .then(res.redirect(`/books`))
@@ -56,7 +69,7 @@ module.exports = (app) => {
     app.get('/books/form', (req, res) => {
         res.marko(
             require('../views/books/forms/form.marko'),
-            { book: {} }
+            { book: {}, errors: [] }
         );
     });
 
@@ -64,7 +77,7 @@ module.exports = (app) => {
     app.get('/books/form/:id', (req, res) => {
         const booksDao = new BookDao(db);
         booksDao.get(req.params.id)
-            .then(book => res.marko(require('../views/books/forms/form.marko'), { book }))
+            .then(book => res.marko(require('../views/books/forms/form.marko'), { book, errors: [] }))
             .catch(error => console.log(error));
     });      
     

@@ -32,6 +32,7 @@ app.use((request, response, next) => {
 
 //Creating a Middleware to handle HTTP 500
 app.use((error, request, response, next) => {
+    console.log(error);
     return response.status(500).marko(
         require('../app/views/base/errors/500.marko')
     );

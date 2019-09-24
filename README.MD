@@ -32,3 +32,9 @@ with Express
 • Use "methodOverride" middleware to deal with forms and HTTP requests methods, just like "PUT" when updating a resource
 
 • Error handling middlewares must be after all middlewares
+
+• Use express-validator middleware to validate input data
+
+• Create a custom validator for express-validator: https://express-validator.github.io/docs/custom-validators-sanitizers.html#custom-validator
+
+• Regex Expression validation: check('myField').matches(/* regular expression */)
