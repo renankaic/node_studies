@@ -5,6 +5,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
+const templates = require('../app/views/templates');
 
 //Defining middlewares
 app.use('/static', express.static('src/app/public'));
@@ -26,7 +27,7 @@ routes(app); //Calls the function exported by the required "routes" module sendi
 //Creating a Middleware to handle HTTP 404
 app.use((request, response, next) => {
     return response.status(404).marko(
-        require('../app/views/base/errors/404.marko')
+        templates.base.error404
     );
 });
 
@@ -34,7 +35,7 @@ app.use((request, response, next) => {
 app.use((error, request, response, next) => {
     console.error(error);
     return response.status(500).marko(
-        require('../app/views/base/errors/500.marko')
+        templates.base.error500
     );
 });
 
