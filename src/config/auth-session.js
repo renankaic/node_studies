@@ -33,4 +33,31 @@ module.exports = (app) => {
         }
     ));
 
+    passport.serializeUser( (user, done) => {
+
+        const userSession = {
+            nome: user.nome_completo,
+            email: user.email
+        };
+
+        done(null, userSession);
+
+    });
+
+    passport.deserializeUser( (userSession, done) => {
+        done(null, userSession);
+    });
+
+    app.use(session({
+        secret: 'node alura',
+        genid: (req) => {
+            return uuid();
+        },
+        resave: false,
+        saveUninitialized: false
+    }));
+
+    app.use(passport.initialize());
+    app.use(passport.session());
+
 };
